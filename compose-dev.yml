@@ -2,9 +2,9 @@ version: "3.9"
 
 services:
   web:
-    build: .
-        context: backend
-        target: development
+    build:
+      context: backend
+      target: development
     command: python /code/manage.py runserver 0.0.0.0:8000
     volumes:
       - .:/code
@@ -18,11 +18,10 @@ services:
       POSTGRES_USER: trade
       POSTGRES_PASSWORD: vegetation
       POSTGRES_DB: db
-  restart: unless-stopped
+    restart: unless-stopped
     volumes:
       - postgres_data:/var/lib/postgresql/data/
-    environment:
-      - "POSTGRES_HOST_AUTH_METHOD=trust"
+
 
 volumes:
   postgres_data:
